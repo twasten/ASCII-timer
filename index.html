@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en" data-theme="amber">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>phosphor</title>
+  <meta name="description" content="A focus timer drawn in glowing ASCII.">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="bar ui">
+      <nav id="modes">
+        <button data-mode="focus">focus</button>
+        <button data-mode="short">short break</button>
+        <button data-mode="long">long break</button>
+      </nav>
+      <div class="right">
+        <button id="btn-log">log</button>
+        <button id="btn-settings">settings</button>
+        <button id="btn-help" aria-label="keyboard shortcuts">?</button>
+      </div>
+    </header>
+
+    <main>
+      <div id="label" class="label">focus</div>
+      <pre id="clock" title="click to start / pause · scroll to change time"></pre>
+      <pre id="progress" class="progress" aria-hidden="true"></pre>
+      <div id="presets" class="presets ui"></div>
+      <input id="task" class="task" type="text" maxlength="80" autocomplete="off" spellcheck="false"
+             placeholder="what are you working on?" aria-label="current task">
+      <div class="controls ui">
+        <button id="btn-start" class="primary">start</button>
+        <button id="btn-reset">reset</button>
+        <button id="btn-skip">skip</button>
+      </div>
+    </main>
+
+    <footer class="bar ui">
+      <div id="today"></div>
+      <div id="cycle" title="sessions until the long break"></div>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <div id="sr" class="sr-only" aria-live="polite"></div>
+
+  <section id="ov-settings" class="overlay" hidden>
+    <div class="panel">
+      <div class="head"><span class="title" data-t="settings">settings</span><button data-close>esc</button></div>
+      <div id="settings-rows"></div>
+      <div class="foot dim">↑↓ select · ←→ change · shift ×5</div>
+    </div>
+  </section>
+
+  <section id="ov-log" class="overlay" hidden>
+    <div class="panel wide">
+      <div class="head"><span class="title" data-t="log · last 7 days">log · last 7 days</span><button data-close>esc</button></div>
+      <div id="log-body"></div>
+      <div class="foot"><button id="btn-clear">clear log</button></div>
+    </div>
+  </section>
+
+  <section id="ov-help" class="overlay" hidden>
+    <div class="panel">
+      <div class="head"><span class="title" data-t="keys">keys</span><button data-close>esc</button></div>
+      <div class="keys">
+        <div><kbd>space</kbd> start / pause</div>
+        <div><kbd>r</kbd> reset</div>
+        <div><kbd>n</kbd> skip to next</div>
+        <div><kbd>↑ ↓</kbd> ±1 min <span class="dim">(shift ±5)</span></div>
+        <div><kbd>1 2 3</kbd> focus / short / long</div>
+        <div><kbd>t</kbd> edit task</div>
+        <div><kbd>c</kbd> cycle phosphor color</div>
+        <div><kbd>g</kbd> cycle glyphs</div>
+        <div><kbd>m</kbd> mute</div>
+        <div><kbd>f</kbd> fullscreen</div>
+        <div><kbd>s</kbd> settings</div>
+        <div><kbd>l</kbd> log</div>
+        <div class="dim" style="margin-top:1em">click the clock to start · scroll on it to set the time</div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/store.js"></script>
+  <script src="js/font.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/clock.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
